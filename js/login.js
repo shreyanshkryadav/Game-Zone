@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login');
     const signupForm = document.getElementById('signup');
 
-    const redirectToDashboard = (email) => {
-        const displayName = email.split('@')[0]
+    const redirectToDashboard = (email, preferredName = '') => {
+        const displayName = preferredName.trim() || email.split('@')[0]
             .replace(/[._-]+/g, ' ')
             .replace(/\b\w/g, (char) => char.toUpperCase());
 
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            redirectToDashboard(email);
+            redirectToDashboard(email, name);
         });
     }
 });
