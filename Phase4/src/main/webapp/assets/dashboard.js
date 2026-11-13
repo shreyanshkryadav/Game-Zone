@@ -2,10 +2,10 @@
 "use strict";
 
 const GAMEZONE_GAMES = [
-  { id: "ps5", name: "PlayStation 5", category: "console", categoryLabel: "CONSOLE", icon: "🎮", description: "Next-generation console gaming with friends.", rate: 69, tag: "POPULAR" },
-  { id: "vr", name: "VR Gaming", category: "vr", categoryLabel: "VIRTUAL REALITY", icon: "🥽", description: "Step into immersive virtual worlds.", rate: 500, tag: "IMMERSIVE" },
-  { id: "racing", name: "Racing Simulator", category: "racing", categoryLabel: "RACING", icon: "🏎️", description: "Race with a realistic driving experience.", rate: 300, tag: "HIGH SPEED" },
-  { id: "pc", name: "PC Gaming", category: "pc", categoryLabel: "PC GAMING", icon: "💻", description: "Play competitive games on a powerful PC.", rate: 150, tag: "COMPETITIVE" }
+  { id: "ps5", name: "PlayStation 5", category: "console", categoryLabel: "CONSOLE", icon: "🎮", description: "Next-generation console gaming with friends.", rate: 150, tag: "POPULAR" },
+  { id: "vr", name: "VR Gaming", category: "vr", categoryLabel: "VIRTUAL REALITY", icon: "🥽", description: "Step into immersive virtual worlds.", rate: 350, tag: "IMMERSIVE" },
+  { id: "racing", name: "Racing Simulator", category: "racing", categoryLabel: "RACING", icon: "🏎️", description: "Race with a realistic driving experience.", rate: 250, tag: "HIGH SPEED" },
+  { id: "pc", name: "PC Gaming", category: "pc", categoryLabel: "PC GAMING", icon: "💻", description: "Play competitive games on a powerful PC.", rate: 100, tag: "COMPETITIVE" }
 ];
 
 const BOOKING_KEY = `gameZoneDashboardBookings:${(document.body.dataset.playerEmail || "guest").toLowerCase()}`;

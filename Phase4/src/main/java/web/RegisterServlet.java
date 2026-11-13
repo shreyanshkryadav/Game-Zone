@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -16,6 +17,13 @@ import java.util.regex.Pattern;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     private static final Pattern EMAIL = Pattern.compile("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$");
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setAttribute("errorMessage", "");
+        request.getRequestDispatcher("/WEB-INF/views/signup.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,6 +45,10 @@ public class RegisterServlet extends HttpServlet {
                 .getAttribute(AppContextListener.USER_SERVICE);
         try {
             users.registerUser(new User(fullName, email, password));
+            HttpSession existingSession = request.getSession(false);
+            if (existingSession != null) {
+                existingSession.invalidate();
+            }
             response.sendRedirect(request.getContextPath() + "/auth?registered=1");
         } catch (InvalidUserException ex) {
             showError(request, response, ex.getMessage());
@@ -66,6 +78,6 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("errorMessage", HtmlEscape.escape(message));
         request.setAttribute("showSignup", "true");
-        request.getRequestDispatcher("/WEB-INF/views/auth.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/signup.jsp").forward(request, response);
     }
 }

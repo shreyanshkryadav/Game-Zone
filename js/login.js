@@ -1,82 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login');
     const signupForm = document.getElementById('signup');
+    const passwordInput = document.getElementById('signupPassword');
+    const confirmInput = document.getElementById('confirmPassword');
 
-    const redirectToDashboard = (email, preferredName = '') => {
-        const displayName = preferredName.trim() || email.split('@')[0]
-            .replace(/[._-]+/g, ' ')
-            .replace(/\b\w/g, (char) => char.toUpperCase());
+    if (!signupForm || !passwordInput || !confirmInput) return;
 
-        sessionStorage.setItem('gameZoneLoggedIn', 'true');
-        sessionStorage.setItem('gameZonePlayerName', displayName || 'Player');
-
-        window.location.href = 'index.html#dashboard';
-    };
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', (event) => {
+    signupForm.addEventListener('submit', (event) => {
+        const passwordsMatch = passwordInput.value === confirmInput.value;
+        confirmInput.setCustomValidity(passwordsMatch ? '' : 'The passwords do not match.');
+        if (!passwordsMatch) {
             event.preventDefault();
+            confirmInput.reportValidity();
+        }
+    });
 
-            const emailInput = document.getElementById('loginEmail');
-            const passwordInput = document.getElementById('loginPassword');
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
-            if (!email || !password) {
-                alert('Please enter your email and password.');
-                return;
-            }
-
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            redirectToDashboard(email);
-        });
-    }
-
-    if (signupForm) {
-        signupForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const nameInput = document.getElementById('signupName');
-            const emailInput = document.getElementById('signupEmail');
-            const passwordInput = document.getElementById('signupPassword');
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            const termsCheckbox = document.getElementById('terms');
-
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-            const confirmPassword = confirmPasswordInput.value.trim();
-
-            if (!name || !email || !password || !confirmPassword) {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters long.');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                alert('Passwords do not match.');
-                return;
-            }
-
-            if (!termsCheckbox.checked) {
-                alert('Please accept the Terms & Conditions.');
-                return;
-            }
-
-            redirectToDashboard(email, name);
-        });
-    }
+    confirmInput.addEventListener('input', () => confirmInput.setCustomValidity(''));
 });

@@ -27,15 +27,15 @@
                 <h2>Create Account</h2>
                 <p class="form-subtitle">Join GameZone and start playing</p>
 
-                <form id="signup">
+                <form id="signup" method="post" action="http://localhost:8080/GamingZonePhase4/register">
                     <div class="input-group">
                         <label for="signupName">Full Name</label>
-                        <input type="text" id="signupName" name="name" autocomplete="name" placeholder="Enter your name" required>
+                        <input type="text" id="signupName" name="fullName" maxlength="80" autocomplete="name" placeholder="Enter your name" required>
                     </div>
 
                     <div class="input-group">
                         <label for="signupEmail">Email Address</label>
-                        <input type="email" id="signupEmail" name="email" autocomplete="email" placeholder="Enter your email" required>
+                        <input type="email" id="signupEmail" name="username" autocomplete="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="input-group">
@@ -64,6 +64,6 @@
         </section>
     </main>
 
-    <script src="js/login.js"></script>
+    <script src="js/login.js" defer></script>
 </body>
 </html>

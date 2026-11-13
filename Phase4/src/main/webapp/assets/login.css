@@ -302,6 +302,8 @@
     font-weight: bold;
 
     font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 

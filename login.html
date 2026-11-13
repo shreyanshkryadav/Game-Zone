@@ -75,7 +75,7 @@
                 </p>
 
 
-                <form id="login">
+                <form id="login" method="post" action="http://localhost:8080/GamingZonePhase4/auth">
 
                     <div class="input-group">
 
@@ -86,6 +86,7 @@
                         <input
                             type="email"
                             id="loginEmail"
+                            name="username"
                             placeholder="Enter your email"
                             required
                         >
@@ -102,6 +103,7 @@
                         <input
                             type="password"
                             id="loginPassword"
+                            name="password"
                             placeholder="Enter your password"
                             required
                         >
@@ -147,9 +149,7 @@
 
     </main>
 
-
-    <script src="js/login.js"></script>
-
+    <script src="js/login.js" defer></script>
 </body>
 
 </html>
